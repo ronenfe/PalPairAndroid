@@ -2,11 +2,11 @@ package com.palpair;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Bundle;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.v13.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.os.Bundle;
+import androidx.legacy.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.webkit.CookieManager;
 import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
@@ -14,15 +14,20 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setPermissions();
         setContentView(R.layout.activity_main);
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         WebView webview = (WebView) findViewById(R.id.webview);
         setUpWebViewDefaults(webview);
         webview.loadUrl("https://palpair.com");
@@ -39,10 +44,11 @@ public class MainActivity extends Activity {
                 });
             }
         });
+        mAdView.bringToFront();
     }
 
     private void setPermissions() {
-        ArrayList<String> arraylist = new ArrayList<String>();
+        ArrayList<String> arraylist = new ArrayList<>();
         boolean flag;
         if (ContextCompat.checkSelfPermission(this, "android.permission.RECORD_AUDIO") != PackageManager.PERMISSION_GRANTED)
             arraylist.add("android.permission.RECORD_AUDIO");

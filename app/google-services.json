@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "861487193118",
+    "firebase_url": "https://palpairandroid.firebaseio.com",
+    "project_id": "palpairandroid",
+    "storage_bucket": "palpairandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861487193118:android:877e8c2e01c76aa5",
+        "android_client_info": {
+          "package_name": "com.palpair"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "861487193118-7nmbsf460c71t595fv0jvbt6tcbtbtia.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.palpair",
+            "certificate_hash": "B167BA73633F06C5EFBCB11E4390F3F474DEDDA7"
+          }
+        },
+        {
+          "client_id": "861487193118-vuqrbmlhjr9su8dbgcdqnr9euqk4q93q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNHExUfX-k8ZXaBPKz0pkHo-b_g_ZcZKc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "861487193118-vuqrbmlhjr9su8dbgcdqnr9euqk4q93q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

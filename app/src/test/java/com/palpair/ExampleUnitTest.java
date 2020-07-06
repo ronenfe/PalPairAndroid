@@ -1,4 +1,4 @@
-package palpair.com.palpair;
+package com.palpair;
 
 import org.junit.Test;
 
