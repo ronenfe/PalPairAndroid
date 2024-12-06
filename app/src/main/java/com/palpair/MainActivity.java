@@ -1,11 +1,10 @@
 package com.palpair;
 
-import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import androidx.legacy.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.webkit.CookieManager;
 import android.webkit.PermissionRequest;
@@ -13,10 +12,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
@@ -25,37 +20,30 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setPermissions();
         setContentView(R.layout.activity_main);
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+       /* AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        WebView webview = (WebView) findViewById(R.id.webview);
+        mAdView.loadAd(adRequest);*/
+        WebView webview = findViewById(R.id.webview);
         setUpWebViewDefaults(webview);
         webview.loadUrl("https://palpair.com");
         webview.setWebChromeClient(new WebChromeClient() {
 
             @Override
             public void onPermissionRequest(final PermissionRequest request) {
-                runOnUiThread(new Runnable() {
-                    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-                    @Override
-                    public void run() {
-                        request.grant(request.getResources());
-                    }
-                });
+                runOnUiThread(() -> request.grant(request.getResources()));
             }
         });
-        mAdView.bringToFront();
+       // mAdView.bringToFront();
     }
 
     private void setPermissions() {
         ArrayList<String> arraylist = new ArrayList<>();
-        boolean flag;
         if (ContextCompat.checkSelfPermission(this, "android.permission.RECORD_AUDIO") != PackageManager.PERMISSION_GRANTED)
             arraylist.add("android.permission.RECORD_AUDIO");
 
         if (ContextCompat.checkSelfPermission(this, "android.permission.CAMERA") != PackageManager.PERMISSION_GRANTED)
             arraylist.add("android.permission.CAMERA");
-        if (arraylist.size() > 0) {
+        if (!arraylist.isEmpty()) {
             ActivityCompat.requestPermissions(this, arraylist.toArray(new String[0]), 1);
         }
     }
@@ -65,11 +53,10 @@ public class MainActivity extends Activity {
      * Convenience method to set some generic defaults for a
      * given WebView
      *
-     * @param webView
      */
+    @SuppressLint("SetJavaScriptEnabled")
     private void setUpWebViewDefaults(WebView webView) {
         WebSettings settings = webView.getSettings();
-        settings.setAppCacheEnabled(false);
         settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         // Enable Javascript
         settings.setJavaScriptEnabled(true);

@@ -2,30 +2,26 @@
 
 buildscript {
     repositories {
-        jcenter()
-        google()
+        google()        // This should be kept, as it's the primary source for Android dependencies
+        mavenCentral()  // Prefer this over jcenter() for modern dependencies
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.android.tools.build:gradle:8.7.3'
+        // Ensure compatibility with your Gradle version
     }
+
     gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        tasks.withType(JavaCompile).tap {
+            configureEach {
+                options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+            }
         }
     }
 }
 
 allprojects {
     repositories {
-        jcenter()
-        google()
+        google()        // Keep Google's repository for Android dependencies
+        mavenCentral()  // Preferred repository
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
