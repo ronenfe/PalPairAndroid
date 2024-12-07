@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
         mAdView.loadAd(adRequest);*/
         WebView webview = findViewById(R.id.webview);
         setUpWebViewDefaults(webview);
-        webview.loadUrl("https://palpair.com");
+        webview.loadUrl("https://4xleqod.localto.net/");
         webview.setWebChromeClient(new WebChromeClient() {
 
             @Override
