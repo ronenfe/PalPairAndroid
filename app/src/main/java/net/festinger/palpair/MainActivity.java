@@ -1,4 +1,4 @@
-package com.palpair;
+package net.festinger.palpair;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
         mAdView.loadAd(adRequest);*/
         WebView webview = findViewById(R.id.webview);
         setUpWebViewDefaults(webview);
-        webview.loadUrl("https://4xleqod.localto.net/");
+        webview.loadUrl("https://app.palpair.lol/");
         webview.setWebChromeClient(new WebChromeClient() {
 
             @Override

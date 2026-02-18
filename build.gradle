@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()  // Prefer this over jcenter() for modern dependencies
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.3'
+        classpath 'com.android.tools.build:gradle:9.0.1'
         // Ensure compatibility with your Gradle version
     }
 
