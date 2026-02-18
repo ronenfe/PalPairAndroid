@@ -9,8 +9,8 @@ android {
         applicationId "net.festinger.palpair"
         minSdkVersion 21
         targetSdkVersion 36
-        versionCode 8
-        versionName '3.3'
+        versionCode 9
+        versionName '4'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
