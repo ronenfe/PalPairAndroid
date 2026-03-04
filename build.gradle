@@ -1,12 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext {
+        kotlin_version = '2.3.10'
+    }
     repositories {
         google()        // This should be kept, as it's the primary source for Android dependencies
         mavenCentral()  // Prefer this over jcenter() for modern dependencies
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:9.0.1'
+        classpath 'com.android.tools.build:gradle:9.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // Ensure compatibility with your Gradle version
     }
 
