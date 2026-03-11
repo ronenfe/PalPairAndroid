@@ -33,8 +33,11 @@ class BillingBridge(
         // Map web package IDs to Google Play product IDs
         val PRODUCT_MAP = mapOf(
             "pack_100" to "palpair_coins_100",
-            "pack_600" to "palpair_coins_600",
-            "pack_1500" to "palpair_coins_1500"
+            "pack_500" to "palpair_coins_500",
+            "pack_2000" to "palpair_coins_2000",
+            "pack_5000" to "palpair_coins_5000",
+            "pack_10000" to "palpair_coins_10000"
+
         )
     }
 

@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    namespace 'net.festinger.palpair'  // Add this line
+    namespace 'net.festinger.palpair'
     compileSdkVersion 36
     defaultConfig {
         applicationId "net.festinger.palpair"
         minSdkVersion 23
         targetSdkVersion 36
-        versionCode 11
-        versionName '6'
+        versionCode 12
+        versionName '7'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
@@ -22,9 +22,17 @@ android {
         }
     }
 
+    flavorDimensions "region"
     productFlavors {
-        // Add product flavors here if necessary
+        global {
+            dimension "region"
+        }
+        china {
+            dimension "region"
+            applicationIdSuffix ".china"
+        }
     }
+
     kotlinOptions {
         jvmTarget = '17'
     }

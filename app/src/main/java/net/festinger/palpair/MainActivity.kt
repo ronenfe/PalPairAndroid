@@ -2,7 +2,10 @@ package net.festinger.palpair
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
@@ -56,6 +59,8 @@ class MainActivity : AppCompatActivity() {
             javaScriptCanOpenWindowsAutomatically = true
             allowFileAccess = true
             allowContentAccess = true
+            useWideViewPort = true
+            loadWithOverviewMode = true
         }
 
         // Handle camera/mic permission requests from the web page
@@ -81,6 +86,33 @@ class MainActivity : AppCompatActivity() {
                 transport?.webView = newWebView
                 resultMsg?.sendToTarget()
                 return true
+            }
+        }
+
+        webView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                val url = request?.url?.toString() ?: return false
+                return handleUrl(url)
+            }
+
+            // For compatibility with older Android versions (if minSdk < 24)
+            @Deprecated("Deprecated in Java")
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                return handleUrl(url ?: "")
+            }
+
+            private fun handleUrl(url: String): Boolean {
+                if (url.startsWith("weixin://") || url.startsWith("alipays://")) {
+                    try {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        startActivity(intent)
+                        return true
+                    } catch (e: ActivityNotFoundException) {
+                        // App not installed, handle accordingly (e.g. show toast)
+                    }
+                    return true
+                }
+                return false
             }
         }
 
