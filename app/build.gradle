@@ -33,6 +33,14 @@ android {
         }
     }
 
+    // This block tells Android Studio which variant to select by default 
+    // when you open the project or after a Gradle sync.
+    productFlavors {
+        global {
+            isDefault = true
+        }
+    }
+
     kotlinOptions {
         jvmTarget = '17'
     }

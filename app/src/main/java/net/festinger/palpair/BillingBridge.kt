@@ -34,10 +34,11 @@ class BillingBridge(
         val PRODUCT_MAP = mapOf(
             "pack_100" to "palpair_coins_100",
             "pack_500" to "palpair_coins_500",
+            "pack_600" to "palpair_coins_600",
+            "pack_1500" to "palpair_coins_1500",
             "pack_2000" to "palpair_coins_2000",
             "pack_5000" to "palpair_coins_5000",
             "pack_10000" to "palpair_coins_10000"
-
         )
     }
 
@@ -106,6 +107,7 @@ class BillingBridge(
     fun purchaseCoins(packageId: String, socketId: String) {
         val googleProductId = PRODUCT_MAP[packageId]
         if (googleProductId == null) {
+            Log.e(TAG, "Package ID not mapped: $packageId")
             notifyWebView(packageId, "", "", false)
             return
         }
@@ -115,7 +117,7 @@ class BillingBridge(
 
         val productDetails = productDetailsList.find { it.productId == googleProductId }
         if (productDetails == null) {
-            Log.e(TAG, "Product not found: $googleProductId")
+            Log.e(TAG, "Product not found in Google Play Console query: $googleProductId")
             notifyWebView(packageId, "", "", false)
             return
         }
